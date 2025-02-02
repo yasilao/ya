@@ -3,305 +3,330 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="https://static.vecteezy.com/system/resources/previews/001/199/508/original/100-dollars-hand-drawing-png.png" type="image/icon type">
-    <title>Money Clicker</title>
+    <title>Exploring China: Crimson Chronicles</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <style>
+        :root {
+            /* Traditional Chinese Inspired Color Palette */
+            --ink-black: #2C3E50;
+            --parchment: #F4ECD8;
+            --jade-green: #2E8B57;
+            --tea-brown: #8B4513;
+            --silk-grey: #A9A9A9;
+            --bamboo-green: #228B22;
+            --background-texture: linear-gradient(135deg, rgba(244, 236, 216, 0.9) 0%, rgba(244, 236, 216, 0.7) 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Arial', sans-serif;
-            background: #2d2d2d;
-            color: #ffffff;
+            font-family: 'Merriweather', serif;
+            background: var(--background-texture);
+            color: var(--ink-black);
+            line-height: 1.6;
+            perspective: 1000px;
+            overflow-x: hidden;
+            background-image: 
+                linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .presentation {
+            width: 100vw;
+            height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
+            position: relative;
+            background: transparent;
+        }
+
+        .slide {
+            position: absolute;
+            width: 90%;
+            max-width: 900px;
+            background-color: rgba(244, 236, 216, 0.9);
+            border: 2px solid var(--tea-brown);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            backdrop-filter: blur(5px);
+            border-radius: 15px;
+            padding: 40px;
+            opacity: 0;
+            transform: scale(0.9) rotateX(45deg);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            display: flex;
             flex-direction: column;
+            align-items: center;
             text-align: center;
         }
 
-        h1 {
-            font-size: 48px;
-            font-weight: bold;
-            margin-bottom: 30px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            color: #FFD700;
+        .slide.active {
+            opacity: 1;
+            transform: scale(1) rotateX(0);
+            z-index: 10;
         }
 
-        button {
-            width: 300px;
-            height: 100px;
-            cursor: pointer;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-            margin: 10px;
-            font-size: 24px;
-            color: #ffffff;
-            background: #4caf50;
-            border: none;
-            border-radius: 12px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .slide-sticker {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 40px;
+            opacity: 0.7;
+            transform: rotate(15deg);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
-        button:hover {
-            transform: scale(1.1);
-            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+        .slide-image {
+            width: 100%;
+            max-height: 350px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            border: 3px solid var(--jade-green);
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
         }
 
-        .counter {
-            font-size: 28px;
-            margin-top: 20px;
-            color: #FFD700;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        .slide-image:hover {
+            transform: scale(1.03) rotate(1deg);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.3);
         }
 
-        .button-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .slide h1, .slide h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--tea-brown);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            letter-spacing: 1px;
+            font-weight: 600;
             margin-bottom: 20px;
         }
 
-        .button-container img {
-            width: 80px;  /* Reduced the size */
-            height: 80px;  /* Reduced the size */
-            margin: 0 10px;  /* Adjusted the margin for spacing */
-            border-radius: 50%;
-            transition: transform 0.3s ease;
+        .slide p {
+            color: var(--ink-black);
+            margin-bottom: 25px;
+            max-width: 700px;
+            font-weight: 400;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
 
-        .button-container img:hover {
-            transform: scale(1.2);
+        .slide ul {
+            list-style-type: none;
+            padding: 0;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
 
-        .footer {
-            margin-top: 40px;
-            font-size: 18px;
-            color: #FFD700;
-            opacity: 0.7;
-        }
-
-        .footer a {
-            color: #FFD700;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-
-        .footer a:hover {
-            color: #ffcc00;
-        }
-
-        .redeem-btn {
-            margin-top: 20px;
-            padding: 8px 20px;
-            font-size: 18px;
-            background: linear-gradient(45deg, #241256, #2b39ff);
-            color: white;
-            border-radius: 25px;
-            border: 2px solid transparent;
-            outline: none;
-            cursor: pointer;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+        .slide ul li {
+            background-color: rgba(255, 255, 255, 0.6);
+            color: var(--ink-black);
+            padding: 15px;
+            border-radius: 15px;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border-left: 5px solid var(--bamboo-green);
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
         }
 
-        .redeem-btn:hover {
-            background: linear-gradient(45deg, #17686b, #3b3768);
-            box-shadow: 0 0 25px rgb(70, 20, 20);
-            transform: scale(1.1);
+        .slide ul li:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+            transform: translateX(10px);
         }
 
-        .redeem-btn:active {
-            box-shadow: 0 0 10px rgba(255, 72, 72, 0.5);
-            transform: scale(1);
-        }
-
-        p {
-            font-size: 16px;
-            margin-top: 10px;
-            color: #ffffff;
-        }
-
-        /* The Modal (background) */
-        .modal {
-            display: none; /* Hidden by default */
+        .navigation {
             position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.4); /* Black with opacity */
-            padding-top: 60px;
+            bottom: 30px;
+            display: flex;
+            gap: 20px;
+            z-index: 20;
         }
 
-        /* Modal Content */
-        .modal-content {
-            background-color: #fff;
-            color: #000;
-            margin: 5% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 500px;
-            border-radius: 10px;
-        }
-
-        /* Close Button */
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
+        .navigation button {
+            background-color: var(--jade-green);
+            color: var(--parchment);
+            border: 2px solid var(--tea-brown);
+            padding: 12px 30px;
+            border-radius: 30px;
             cursor: pointer;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
         }
 
-        .paypal-form input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-            border: 1px solid #ccc;
+        .navigation button:hover {
+            background-color: var(--tea-brown);
+            transform: translateY(-3px);
         }
 
-        .paypal-form button {
-            width: 100%;
-            padding: 12px;
-            background-color: #0070ba;
-            color: white;
-            font-size: 18px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .paypal-form button:hover {
-            background-color: #005e8c;
-        }
-
-        /* YouTube Icon in Footer */
-        .footer .youtube-btn {
-            display: inline-block;
-            width: 30px;
-            height: 30px;
-            background-color: #ff0000;
+        .fullscreen-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--bamboo-green);
+            color: var(--parchment);
+            border: 2px solid var(--tea-brown);
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            margin-left: 10px;
-            transition: transform 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.4);
         }
 
-        .footer .youtube-btn:hover {
-            transform: scale(1.2);
+        .fullscreen-toggle:hover {
+            background-color: var(--tea-brown);
+            transform: scale(1.1) rotate(15deg);
         }
 
-        .footer .youtube-btn i {
-            color: white;
-            font-size: 20px;
-            text-align: center;
-            line-height: 30px;
+        /* Fullscreen Styles */
+        #presentation-container:-webkit-full-screen {
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            background: var(--background-texture);
+        }
+
+        #presentation-container:-moz-full-screen {
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            background: var(--background-texture);
+        }
+
+        #presentation-container:fullscreen {
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            background: var(--background-texture);
+
         }
     </style>
 </head>
 <body>
-    <h1>Money Clicker</h1>
-    <div class="button-container">
-        <!-- Left Image -->
-        <img src="https://cdn.pixabay.com/photo/2019/07/31/07/55/dollar-4374652_640.png" sizes="" alt="Dollar Icon">
+    <button class="fullscreen-toggle" onclick="toggleFullScreen()" title="Toggle Fullscreen">
+        <i class="fas fa-expand"></i>
+    </button>
+
+    <div id="presentation-container" class="presentation">
+        <div id="slide1" class="slide active">
+            <div class="slide-sticker">🐉</div>
+            <img src="https://images.pexels.com/photos/734102/pexels-photo-734102.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="China Landscape" class="slide-image">
+            <h1>Crimson Chronicles: China Unveiled</h1>
+            <p>A journey through the depths of Chinese civilization, painted in shades of passion and history</p>
+        </div>
         
-        <button id="clickable-button">$</button>
+        <div id="slide2" class="slide">
+            <div class="slide-sticker">🏔️</div>
+            <img src="https://images.pexels.com/photos/1586205/pexels-photo-1586205.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Chinese Landscape" class="slide-image">
+            <h2>Landscapes of Legend</h2>
+            <p>Majestic terrains that have witnessed millennia of human drama and natural wonder</p>
+            <ul>
+                <li>🗺️ Vast Realm: 9.6 million square kilometers of untold stories</li>
+                <li>🏞️ Diverse Landscapes: From misty peaks to ancient plains</li>
+                <li>🌊 Legendary Rivers: Yangtze and Yellow - arteries of civilization</li>
+            </ul>
+        </div>
         
-        <!-- Right Image -->
-        <img src="https://cdn.pixabay.com/photo/2019/07/31/07/55/dollar-4374652_640.png" alt="Dollar Icon">
-    </div>
-    <div class="counter">
-        Clicks: <span id="click-count">0</span>
-    </div>
-    <div class="counter">
-        Money: $<span id="money">0.000</span>
-    </div>
-    
-    <p>1000 clicks = 0.001 dollars</p>
-
-    <div class="footer">
-        Made with 🩸blod🩸 by <a href="https://github.com/" target="_blank">yassi lao</a>
-        <!-- YouTube Button -->
-        <a href="https://www.youtube.com/@yassilao" target="_blank" class="youtube-btn">
-            <img src="https://www.liblogo.com/img-logo/yo482y5ff-youtube-icon-logo-youtube-logo-free-icon-of-vector-logo.pnghttps://th.bing.com/th/id/R.39550c155a7c7a519f31887edbb7d32c?rik=qvE8E9MyKGlnHw&pid=ImgRaw&r=0" sizes="30%" alt="">
-        </a>
-    </div>
-
-    <!-- Redeem Button -->
-    <button class="redeem-btn" id="redeem-button" aria-setsize="50%">Redeem</button>
-
-    <!-- Modal for PayPal Account -->
-    <div id="paypal-modal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Enter Your PayPal Account</h2>
-            <form class="paypal-form" id="paypal-form">
-                <input type="email" id="paypal-email" placeholder="Enter PayPal Email" required>
-                <button type="submit">Submit</button>
-            </form>
+        <div id="slide3" class="slide">
+            <div class="slide-sticker">🏺</div>
+            <img src="https://images.pexels.com/photos/33266/work-chinese-industrial-professional.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Chinese Historical Artifacts" class="slide-image">
+            <h2>Echoes of Dynasties</h2>
+            <p>A tapestry of empires, woven with threads of wisdom, conflict, and transformation</p>
+            <ul>
+                <li>👑 Imperial Legacies: From Xia to Qing, each dynasty a chapter of legend</li>
+                <li>💡 Revolutionary Innovations: Inventions that changed the world</li>
+                <li>🧘 Philosophical Depths: Harmony of thought through centuries</li>
+            </ul>
+        </div>
+        
+        <div id="slide4" class="slide">
+            <div class="slide-sticker">🚀</div>
+            <img src="https://images.pexels.com/photos/275289/pexels-photo-275289.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Modern Chinese City" class="slide-image">
+            <h2>Forge of the Future</h2>
+            <p>Where ancient wisdom ignites the flames of technological revolution</p>
+            <ul>
+                <li>💼 Economic Titan: Reshaping global economic landscapes</li>
+                <li>🤖 Technological Frontier: Pioneering the next era of innovation</li>
+                <li>🌐 Global Influence: Connecting worlds, bridging civilizations</li>
+            </ul>
+        </div>
+        
+        <div id="slide5" class="slide">
+            <div class="slide-sticker">🎨</div>
+            <img src="https://images.pexels.com/photos/2915957/pexels-photo-2915957.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Chinese Culture" class="slide-image">
+            <h2>Cultural Inferno</h2>
+            <p>A blazing mosaic of traditions, arts, and expressions that defy time and boundaries</p>
+            <ul>
+                <li>🏯 Iconic Monuments: Testaments to human creativity and resilience</li>
+                <li>✍️ Artistic Traditions: Brushstrokes of cultural immortality</li>
+                <li>🥢 Culinary Alchemy: Flavors that tell stories of generations</li>
+            </ul>
+        </div>
+        
+        <div class="navigation">
+            <button onclick="changeSlide(-1)">Previous</button>
+            <button onclick="changeSlide(1)">Next</button>
         </div>
     </div>
 
     <script>
-        const clickableButton = document.getElementById('clickable-button');
-        const counter = document.getElementById('click-count');
-        const moneyDisplay = document.getElementById('money');
-        const redeemButton = document.getElementById('redeem-button');
-        const modal = document.getElementById('paypal-modal');
-        const closeModal = document.getElementsByClassName('close')[0];
-        let count = 0;
-        let money = 0;
+        function toggleFullScreen() {
+            const container = document.getElementById('presentation-container');
+            const fullscreenIcon = document.querySelector('.fullscreen-toggle i');
 
-        clickableButton.addEventListener('click', () => {
-            count++;
-            counter.textContent = count;
-
-            if (count % 1000 === 0) {
-                money += 0.001;
-                moneyDisplay.textContent = money.toFixed(3);
-            }
-        });
-
-        // Open the PayPal modal when redeem button is clicked
-        redeemButton.addEventListener('click', () => {
-            if (money >= 100) {
-                modal.style.display = "block";
+            if (!document.fullscreenElement) {
+                if (container.requestFullscreen) {
+                    container.requestFullscreen();
+                } else if (container.mozRequestFullScreen) {
+                    container.mozRequestFullScreen();
+                } else if (container.webkitRequestFullscreen) {
+                    container.webkitRequestFullscreen();
+                } else if (container.msRequestFullscreen) {
+                    container.msRequestFullscreen();
+                }
+                fullscreenIcon.classList.remove('fa-expand');
+                fullscreenIcon.classList.add('fa-compress');
             } else {
-                alert('You need at least $100 to redeem.');
-            }
-        });
-
-        // Close the modal
-        closeModal.onclick = function() {
-            modal.style.display = "none";
-        }
-
-        // Close the modal if the user clicks outside of it
-        window.onclick = function(event) {
-            if (event.target === modal) {
-                modal.style.display = "none";
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+                fullscreenIcon.classList.remove('fa-compress');
+                fullscreenIcon.classList.add('fa-expand');
             }
         }
 
-        // Handle the PayPal form submission
-        document.getElementById('paypal-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const paypalEmail = document.getElementById('paypal-email').value;
-            alert(`Thank you! We will send your payment to: ${paypalEmail}`);
-            modal.style.display = "none";
-            money = 0; // Reset money after redeeming
-            moneyDisplay.textContent = money.toFixed(3);
-        });
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function changeSlide(direction) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + direction + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
     </script>
 </body>
 </html>
