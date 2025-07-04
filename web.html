@@ -1,23 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exploring China: Crimson Chronicles</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <title>جدول التغذية الأسبوعي للطيور</title>
     <style>
-        :root {
-            /* Traditional Chinese Inspired Color Palette */
-            --ink-black: #2C3E50;
-            --parchment: #F4ECD8;
-            --jade-green: #2E8B57;
-            --tea-brown: #8B4513;
-            --silk-grey: #A9A9A9;
-            --bamboo-green: #228B22;
-            --background-texture: linear-gradient(135deg, rgba(244, 236, 216, 0.9) 0%, rgba(244, 236, 216, 0.7) 100%);
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -25,308 +12,1146 @@
         }
 
         body {
-            font-family: 'Merriweather', serif;
-            background: var(--background-texture);
-            color: var(--ink-black);
-            line-height: 1.6;
-            perspective: 1000px;
-            overflow-x: hidden;
-            background-image: 
-                linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px);
-            background-size: 20px 20px;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            direction: rtl;
         }
 
-        .presentation {
-            width: 100vw;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
             position: relative;
-            background: transparent;
+            overflow: hidden;
         }
 
-        .slide {
+        .header::before {
+            content: '🦜';
             position: absolute;
-            width: 90%;
-            max-width: 900px;
-            background-color: rgba(244, 236, 216, 0.9);
-            border: 2px solid var(--tea-brown);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            backdrop-filter: blur(5px);
-            border-radius: 15px;
-            padding: 40px;
-            opacity: 0;
-            transform: scale(0.9) rotateX(45deg);
-            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            top: -20px;
+            left: 50px;
+            font-size: 80px;
+            opacity: 0.3;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .header::after {
+            content: '🐦';
+            position: absolute;
+            bottom: -20px;
+            right: 50px;
+            font-size: 60px;
+            opacity: 0.3;
+            animation: float 3s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .bird-types {
             display: flex;
-            flex-direction: column;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .bird-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            min-width: 200px;
+            transition: transform 0.3s ease;
+        }
+
+        .bird-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .bird-icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .bird-name {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .bird-subtitle {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .schedule-table {
+            margin: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 1.1em;
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        td {
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+            vertical-align: middle;
+        }
+
+        .day-cell {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            font-weight: bold;
+            font-size: 1.1em;
+            position: relative;
+        }
+
+        .food-item {
+            display: flex;
             align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 5px 0;
+            padding: 10px;
+            background: rgba(79, 172, 254, 0.1);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .food-item:hover {
+            background: rgba(79, 172, 254, 0.2);
+            transform: scale(1.02);
+        }
+
+        .food-emoji {
+            font-size: 1.5em;
+        }
+
+        .food-text {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .notes {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
+            margin: 30px;
+            padding: 20px;
+            border-radius: 15px;
             text-align: center;
         }
 
-        .slide.active {
-            opacity: 1;
-            transform: scale(1) rotateX(0);
-            z-index: 10;
+        .notes h3 {
+            color: #2d3436;
+            margin-bottom: 15px;
+            font-size: 1.3em;
         }
 
-        .slide-sticker {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 40px;
-            opacity: 0.7;
-            transform: rotate(15deg);
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        .notes ul {
+            list-style: none;
+            text-align: right;
         }
 
-        .slide-image {
-            width: 100%;
-            max-height: 350px;
-            object-fit: cover;
-            border-radius: 20px;
-            margin-bottom: 25px;
-            border: 3px solid var(--jade-green);
-            transition: all 0.4s ease;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        .notes li {
+            margin: 10px 0;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            border-right: 4px solid #e17055;
         }
 
-        .slide-image:hover {
-            transform: scale(1.03) rotate(1deg);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+        .notes li::before {
+            content: '⚠️';
+            margin-left: 10px;
         }
 
-        .slide h1, .slide h2 {
-            font-family: 'Cinzel', serif;
-            color: var(--tea-brown);
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-            letter-spacing: 1px;
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
-
-        .slide p {
-            color: var(--ink-black);
-            margin-bottom: 25px;
-            max-width: 700px;
-            font-weight: 400;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-        }
-
-        .slide ul {
-            list-style-type: none;
-            padding: 0;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .slide ul li {
-            background-color: rgba(255, 255, 255, 0.6);
-            color: var(--ink-black);
-            padding: 15px;
-            border-radius: 15px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            border-left: 5px solid var(--bamboo-green);
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
-        }
-
-        .slide ul li:hover {
-            background-color: rgba(255, 255, 255, 0.8);
-            transform: translateX(10px);
-        }
-
-        .navigation {
-            position: fixed;
-            bottom: 30px;
-            display: flex;
-            gap: 20px;
-            z-index: 20;
-        }
-
-        .navigation button {
-            background-color: var(--jade-green);
-            color: var(--parchment);
-            border: 2px solid var(--tea-brown);
-            padding: 12px 30px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-        }
-
-        .navigation button:hover {
-            background-color: var(--tea-brown);
-            transform: translateY(-3px);
-        }
-
-        .fullscreen-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background-color: var(--bamboo-green);
-            color: var(--parchment);
-            border: 2px solid var(--tea-brown);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            z-index: 100;
-            transition: all 0.3s ease;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.4);
-        }
-
-        .fullscreen-toggle:hover {
-            background-color: var(--tea-brown);
-            transform: scale(1.1) rotate(15deg);
-        }
-
-        /* Fullscreen Styles */
-        #presentation-container:-webkit-full-screen {
-            width: 100vw;
-            height: 100vh;
-            margin: 0;
-            padding: 0;
-            background: var(--background-texture);
-        }
-
-        #presentation-container:-moz-full-screen {
-            width: 100vw;
-            height: 100vh;
-            margin: 0;
-            padding: 0;
-            background: var(--background-texture);
-        }
-
-        #presentation-container:fullscreen {
-            width: 100vw;
-            height: 100vh;
-            margin: 0;
-            padding: 0;
-            background: var(--background-texture);
-
+        @media (max-width: 768px) {
+            .bird-types {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .schedule-table {
+                margin: 15px;
+            }
+            
+            th, td {
+                padding: 15px 10px;
+                font-size: 0.9em;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
         }
     </style>
 </head>
 <body>
-    <button class="fullscreen-toggle" onclick="toggleFullScreen()" title="Toggle Fullscreen">
-        <i class="fas fa-expand"></i>
-    </button>
+    <div class="container">
+        <div class="header">
+            <h1>جدول التغذية الأسبوعي للطيور</h1>
+            <p>دليل شامل لتغذية البادجي والكناري والفيشر</p>
+        </div>
 
-    <div id="presentation-container" class="presentation">
-        <div id="slide1" class="slide active">
-            <div class="slide-sticker">🐉</div>
-            <img src="https://images.pexels.com/photos/734102/pexels-photo-734102.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="China Landscape" class="slide-image">
-            <h1>Crimson Chronicles: China Unveiled</h1>
-            <p>A journey through the depths of Chinese civilization, painted in shades of passion and history</p>
+        <div class="bird-types">
+            <div class="bird-card">
+                <div class="bird-icon">🦜</div>
+                <div class="bird-name">البادجي</div>
+                <div class="bird-subtitle">Budgerigar</div>
+            </div>
+            <div class="bird-card">
+                <div class="bird-icon">🐤</div>
+                <div class="bird-name">الكناري</div>
+                <div class="bird-subtitle">Canary</div>
+            </div>
+            <div class="bird-card">
+                <div class="bird-icon">🦜</div>
+                <div class="bird-name">الفيشر</div>
+                <div class="bird-subtitle">Lovebird</div>
+            </div>
+            <div class="bird-card">
+                <div class="bird-icon">🐦</div>
+                <div class="bird-name">الزيبرا</div>
+                <div class="bird-subtitle">Zebra Finch</div>
+            </div>
+            <div class="bird-card">
+                <div class="bird-icon">🦜</div>
+                <div class="bird-name">الكوكتايل</div>
+                <div class="bird-subtitle">Cockatiel</div>
+            </div>
+            <div class="bird-card">
+                <div class="bird-icon">🐤</div>
+                <div class="bird-name">الحسون</div>
+                <div class="bird-subtitle">Goldfinch</div>
+            </div>
         </div>
-        
-        <div id="slide2" class="slide">
-            <div class="slide-sticker">🏔️</div>
-            <img src="https://images.pexels.com/photos/1586205/pexels-photo-1586205.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Chinese Landscape" class="slide-image">
-            <h2>Landscapes of Legend</h2>
-            <p>Majestic terrains that have witnessed millennia of human drama and natural wonder</p>
+
+        <div class="schedule-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>اليوم</th>
+                        <th>الطعام الأساسي</th>
+                        <th>الخضار والفواكه</th>
+                        <th>الإضافات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="day-cell">الأحد</td>
+                        <td>
+                            <div class="food-item">
+                                <span class="food-emoji">🌾</span>
+                                <span class="food-text">بذور الدخن</span>
+                            </div>
+                            <div class="food-item">
+                                <span class="food-emoji">🌻</span>
+                                <span class="food-text">بذور دوار الشمس</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="food-item">
+                                <span class="food-emoji">🥬</span>
+                                <span class="food-text">أوراق الخس</span>
+                            </div>
+                            <div class="food-item">
+                                <span class="food-emoji">🍎</span>
+                                <span class="food-text">قطع التفاح</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="food-item">
+                                <span class="food-emoji">🥚</span>
+                                <span class="food-text">بيض مسلوق مفروم</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="day-cell">الاثنين</td>
+                        <td>
+                            <div class="food-item">
+                                <span class="food-emoji">🌾</span>
+                                <span class="food-text">خليط البذور</span>
+                            </div>
+                            <div class="food-item">
+                                <span class="food-emoji">🌰</span>
+                                <span class="food-text">بذور الكتان</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="food-item">
+                                <span class="food-emoji">🥕</span>
+                                <span class="food-text">جزر مبشور</span>
+                            </div>
+                            <div class="food-item">
+                                <span class="food-emoji">🥒</span>
+                                <span class="food-text">شرائح الخيار</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="food-item">
+                                <span class="food-emoji">🍞</span>
+                                <span class="food-text">خبز القمح الكامل</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="day-cell">الثلاثاء</td>
+                        <td>
+                            <div class="food-item">
+                                <span class="food-emoji">🌾</span>
+                                <span class="food-text">بذور الشوفان</span>
+                            </div>
+                            <div class="food-item">
+                                <span class="food-emoji">🌿</span>
+                                <span class="food-text">بذور السمسم</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="food-item">
+                                <span class="food-emoji">🥦</span>
+                                <span class="food-text">البروكلي المسلوق</span>
+                            </div>
+                            <div class="food-item">
+                                <span class="food-emoji">🍊</span>
+                                <span class="food-text">قطع البرتقال</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="food-item">
+                                <span class="food-emoji">🍯</span>
+                                <span class="food-text">عسل طبيعي (قليل)</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="day-cell">الأربعاء</td>
+                        <td>
+                            <div class="food-item">
+                                <span class="food-emoji">🌾</span>
+                                <span class="food-text">بذور الدخن الأحمر</span>
+                            </div>
+                            <div class="food-item">
+                                <span class="food-emoji">🌻</span>
+                                <span class="food-text">بذور القرطم</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="food-item">
+                                <span class="food-emoji">🌶️</span>
+                                <span class="food-text">فلفل أخضر حلو</span>
+                            </div>
+                            <div class="food-item">
+                                <span class="food-emoji">🍇</span>
+                                <span class="food-text">حبات العنب</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="food-item">
+                                <span class="food-emoji">🥛</span>
+                                <span class="food-text">بسكويت الكالسيوم</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="day-cell">الخميس</td>
+                        <td>
+                            <div class="food-item">
+                                <span class="food-emoji">🌾</span>
+                                <span class="food-text">بذور الكناري</span>
+                            </div>
+                            <div class="food-item">
+                                <span class="food-emoji">🌿</span>
+                                <span class="food-text">بذور الشيا</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="food-item">
+                                <span class="food-emoji">🥬</span>
+                                <span class="food-text">أوراق السبانخ</span>
+                            </div>
+                            <div class="food-item">
+                                <span class="food-emoji">🥝</span>
+                                <span class="food-text">شرائح الكيوي</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="food-item">
+                                <span class="food-emoji">🥚</span>
+                                <span class="food-text">صفار البيض</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="day-cell">الجمعة</td>
+                        <td>
+                            <div class="food-item">
+                                <span class="food-emoji">🌾</span>
+                                <span class="food-text">خليط البذور المتنوع</span>
+                            </div>
+                            <div class="food-item">
+                                <span class="food-emoji">🌰</span>
+                                <span class="food-text">بذور اليقطين</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="food-item">
+                                <span class="food-emoji">🍓</span>
+                                <span class="food-text">حبات الفراولة</span>
+                            </div>
+                            <div class="food-item">
+                                <span class="food-emoji">🥕</span>
+                                <span class="food-text">جزر مطبوخ</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="food-item">
+                                <span class="food-emoji">🌿</span>
+                                <span class="food-text">أعشاب طازجة</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="day-cell">السبت</td>
+                        <td>
+                            <div class="food-item">
+                                <span class="food-emoji">🌾</span>
+                                <span class="food-text">بذور الدخن الأبيض</span>
+                            </div>
+                            <div class="food-item">
+                                <span class="food-emoji">🌻</span>
+                                <span class="food-text">بذور عباد الشمس</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="food-item">
+                                <span class="food-emoji">🍌</span>
+                                <span class="food-text">شرائح الموز</span>
+                            </div>
+                            <div class="food-item">
+                                <span class="food-emoji">🥒</span>
+                                <span class="food-text">خيار مقطع</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="food-item">
+                                <span class="food-emoji">🍞</span>
+                                <span class="food-text">خبز محمص</span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- جدول البادجي -->
+        <div style="margin: 40px 30px;">
+            <h2 style="text-align: center; color: #4facfe; margin-bottom: 20px; font-size: 2em;">
+                🦜 جدول تغذية البادجي المخصص
+            </h2>
+            <div class="schedule-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>اليوم</th>
+                            <th>البذور الأساسية</th>
+                            <th>الخضار المفضلة</th>
+                            <th>الفواكه الآمنة</th>
+                            <th>الإضافات الخاصة</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="day-cell">الأحد</td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🌾</span>
+                                    <span class="food-text">بذور الدخن الأبيض</span>
+                                </div>
+                                <div class="food-item">
+                                    <span class="food-emoji">🌻</span>
+                                    <span class="food-text">بذور دوار الشمس (قليل)</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🥬</span>
+                                    <span class="food-text">أوراق الخس الطازجة</span>
+                                </div>
+                                <div class="food-item">
+                                    <span class="food-emoji">🥕</span>
+                                    <span class="food-text">جزر مبشور ناعم</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🍎</span>
+                                    <span class="food-text">تفاح مقطع صغير</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🥚</span>
+                                    <span class="food-text">بيض مسلوق مهروس</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="day-cell">الاثنين</td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🌾</span>
+                                    <span class="food-text">بذور الكناري</span>
+                                </div>
+                                <div class="food-item">
+                                    <span class="food-emoji">🌿</span>
+                                    <span class="food-text">بذور الكتان</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🥦</span>
+                                    <span class="food-text">بروكلي مسلوق</span>
+                                </div>
+                                <div class="food-item">
+                                    <span class="food-emoji">🥒</span>
+                                    <span class="food-text">خيار مقطع</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🍇</span>
+                                    <span class="food-text">عنب مقطع نصفين</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🌿</span>
+                                    <span class="food-text">أعشاب الدنيبة</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- جدول الكناري -->
+        <div style="margin: 40px 30px;">
+            <h2 style="text-align: center; color: #ffeaa7; margin-bottom: 20px; font-size: 2em;">
+                🐤 جدول تغذية الكناري المخصص
+            </h2>
+            <div class="schedule-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>اليوم</th>
+                            <th>البذور المفضلة</th>
+                            <th>الخضار الطازجة</th>
+                            <th>الفواكه المحببة</th>
+                            <th>مكملات التغذية</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="day-cell">الأحد</td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🌾</span>
+                                    <span class="food-text">بذور الكناري الخاصة</span>
+                                </div>
+                                <div class="food-item">
+                                    <span class="food-emoji">🌿</span>
+                                    <span class="food-text">بذور الشوك</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🥬</span>
+                                    <span class="food-text">أوراق الهندباء</span>
+                                </div>
+                                <div class="food-item">
+                                    <span class="food-emoji">🥬</span>
+                                    <span class="food-text">سبانخ طازجة</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🍎</span>
+                                    <span class="food-text">تفاح أخضر</span>
+                                </div>
+                                <div class="food-item">
+                                    <span class="food-emoji">🍊</span>
+                                    <span class="food-text">برتقال حلو</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🥚</span>
+                                    <span class="food-text">بيض مسلوق للتكاثر</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="day-cell">الاثنين</td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🌾</span>
+                                    <span class="food-text">بذور الخشخاش</span>
+                                </div>
+                                <div class="food-item">
+                                    <span class="food-emoji">🌿</span>
+                                    <span class="food-text">بذور السمسم</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🥕</span>
+                                    <span class="food-text">جزر مبشور</span>
+                                </div>
+                                <div class="food-item">
+                                    <span class="food-emoji">🌶️</span>
+                                    <span class="food-text">فلفل أحمر حلو</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🍓</span>
+                                    <span class="food-text">فراولة طازجة</span>
+                                </div>
+                                <div class="food-item">
+                                    <span class="food-emoji">🥝</span>
+                                    <span class="food-text">كيوي مقطع</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🍯</span>
+                                    <span class="food-text">عسل نحل طبيعي</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- جدول الفيشر -->
+        <div style="margin: 40px 30px;">
+            <h2 style="text-align: center; color: #fd79a8; margin-bottom: 20px; font-size: 2em;">
+                🦜 جدول تغذية الفيشر المخصص
+            </h2>
+            <div class="schedule-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>اليوم</th>
+                            <th>البذور المغذية</th>
+                            <th>الخضار الضرورية</th>
+                            <th>الفواكه الطازجة</th>
+                            <th>البروتينات والمكملات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="day-cell">الأحد</td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🌾</span>
+                                    <span class="food-text">بذور دوار الشمس</span>
+                                </div>
+                                <div class="food-item">
+                                    <span class="food-emoji">🌰</span>
+                                    <span class="food-text">بذور القرطم</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🥬</span>
+                                    <span class="food-text">كرنب طازج</span>
+                                </div>
+                                <div class="food-item">
+                                    <span class="food-emoji">🥦</span>
+                                    <span class="food-text">قرنبيط مسلوق</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🥭</span>
+                                    <span class="food-text">مانجو مقطعة</span>
+                                </div>
+                                <div class="food-item">
+                                    <span class="food-emoji">🍇</span>
+                                    <span class="food-text">عنب أحمر</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🥚</span>
+                                    <span class="food-text">بيض مسلوق كامل</span>
+                                </div>
+                                <div class="food-item">
+                                    <span class="food-emoji">🥛</span>
+                                    <span class="food-text">مكملات الكالسيوم</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="day-cell">الاثنين</td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🌾</span>
+                                    <span class="food-text">بذور الدخن المختلطة</span>
+                                </div>
+                                <div class="food-item">
+                                    <span class="food-emoji">🌿</span>
+                                    <span class="food-text">بذور الكتان</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🥕</span>
+                                    <span class="food-text">جزر مطبوخ</span>
+                                </div>
+                                <div class="food-item">
+                                    <span class="food-emoji">🌶️</span>
+                                    <span class="food-text">فلفل أخضر</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🍌</span>
+                                    <span class="food-text">موز ناضج</span>
+                                </div>
+                                <div class="food-item">
+                                    <span class="food-emoji">🍓</span>
+                                    <span class="food-text">توت طازج</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🍞</span>
+                                    <span class="food-text">خبز القمح الكامل</span>
+                                </div>
+                                <div class="food-item">
+                                    <span class="food-emoji">🌿</span>
+                                    <span class="food-text">أعشاب طبية</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- جدول الزيبرا -->
+        <div style="margin: 40px 30px;">
+            <h2 style="text-align: center; color: #00b894; margin-bottom: 20px; font-size: 2em;">
+                🐦 جدول تغذية الزيبرا المخصص
+            </h2>
+            <div class="schedule-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>اليوم</th>
+                            <th>البذور الدقيقة</th>
+                            <th>الخضار الطرية</th>
+                            <th>الفواكه الصغيرة</th>
+                            <th>الإضافات المهمة</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="day-cell">الأحد</td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🌾</span>
+                                    <span class="food-text">بذور الدخن الصغيرة</span>
+                                </div>
+                                <div class="food-item">
+                                    <span class="food-emoji">🌿</span>
+                                    <span class="food-text">بذور الخشخاش</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🥬</span>
+                                    <span class="food-text">أوراق الخس المفرومة</span>
+                                </div>
+                                <div class="food-item">
+                                    <span class="food-emoji">🥕</span>
+                                    <span class="food-text">جزر مبشور ناعم</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🍎</span>
+                                    <span class="food-text">تفاح مقطع قطع دقيقة</span>
+                                </div>
+                                <div class="food-item">
+                                    <span class="food-emoji">🍇</span>
+                                    <span class="food-text">حبات عنب صغيرة</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🥚</span>
+                                    <span class="food-text">بيض مسلوق مفروم</span>
+                                </div>
+                                <div class="food-item">
+                                    <span class="food-emoji">🍞</span>
+                                    <span class="food-text">فتات خبز القمح</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="day-cell">الاثنين</td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🌾</span>
+                                    <span class="food-text">بذور الكناري الصغيرة</span>
+                                </div>
+                                <div class="food-item">
+                                    <span class="food-emoji">🌿</span>
+                                    <span class="food-text">بذور النيجر</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🥦</span>
+                                    <span class="food-text">بروكلي مسلوق مفروم</span>
+                                </div>
+                                <div class="food-item">
+                                    <span class="food-emoji">🥒</span>
+                                    <span class="food-text">خيار مقطع دقيق</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🍊</span>
+                                    <span class="food-text">برتقال مقطع صغير</span>
+                                </div>
+                                <div class="food-item">
+                                    <span class="food-emoji">🍓</span>
+                                    <span class="food-text">فراولة مقطعة</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🌿</span>
+                                    <span class="food-text">أعشاب طازجة مفرومة</span>
+                                </div>
+                                <div class="food-item">
+                                    <span class="food-emoji">🥛</span>
+                                    <span class="food-text">مكملات الكالسيوم</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- جدول الكوكتايل -->
+        <div style="margin: 40px 30px;">
+            <h2 style="text-align: center; color: #e84393; margin-bottom: 20px; font-size: 2em;">
+                🦜 جدول تغذية الكوكتايل المخصص
+            </h2>
+            <div class="schedule-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>اليوم</th>
+                            <th>البذور المتوسطة</th>
+                            <th>الخضار المتنوعة</th>
+                            <th>الفواكه المفيدة</th>
+                            <th>الأطعمة المفضلة</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="day-cell">الأحد</td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🌻</span>
+                                    <span class="food-text">بذور دوار الشمس</span>
+                                </div>
+                                <div class="food-item">
+                                    <span class="food-emoji">🌾</span>
+                                    <span class="food-text">بذور الدخن المتوسطة</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🥕</span>
+                                    <span class="food-text">جزر مقطع شرائح</span>
+                                </div>
+                                <div class="food-item">
+                                    <span class="food-emoji">🌽</span>
+                                    <span class="food-text">ذرة مسلوقة</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🍌</span>
+                                    <span class="food-text">موز مقطع حلقات</span>
+                                </div>
+                                <div class="food-item">
+                                    <span class="food-emoji">🍎</span>
+                                    <span class="food-text">تفاح مقطع شرائح</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🥚</span>
+                                    <span class="food-text">بيض مسلوق مقطع</span>
+                                </div>
+                                <div class="food-item">
+                                    <span class="food-emoji">🍞</span>
+                                    <span class="food-text">خبز القمح الكامل</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="day-cell">الاثنين</td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🌰</span>
+                                    <span class="food-text">بذور القرطم</span>
+                                </div>
+                                <div class="food-item">
+                                    <span class="food-emoji">🌿</span>
+                                    <span class="food-text">بذور الكتان</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🥦</span>
+                                    <span class="food-text">بروكلي مسلوق</span>
+                                </div>
+                                <div class="food-item">
+                                    <span class="food-emoji">🌶️</span>
+                                    <span class="food-text">فلفل أحمر حلو</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🍇</span>
+                                    <span class="food-text">عنب أحمر طازج</span>
+                                </div>
+                                <div class="food-item">
+                                    <span class="food-emoji">🥭</span>
+                                    <span class="food-text">مانجو مقطعة</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🥜</span>
+                                    <span class="food-text">لوز مقطع قطع صغيرة</span>
+                                </div>
+                                <div class="food-item">
+                                    <span class="food-emoji">🍯</span>
+                                    <span class="food-text">عسل طبيعي (قليل)</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- جدول الحسون -->
+        <div style="margin: 40px 30px;">
+            <h2 style="text-align: center; color: #fdcb6e; margin-bottom: 20px; font-size: 2em;">
+                🐤 جدول تغذية الحسون المخصص
+            </h2>
+            <div class="schedule-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>اليوم</th>
+                            <th>البذور المفضلة</th>
+                            <th>الخضار الطبيعية</th>
+                            <th>الفواكه البرية</th>
+                            <th>الأطعمة التقليدية</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="day-cell">الأحد</td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🌾</span>
+                                    <span class="food-text">بذور الشوك البري</span>
+                                </div>
+                                <div class="food-item">
+                                    <span class="food-emoji">🌿</span>
+                                    <span class="food-text">بذور الهندباء</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🥬</span>
+                                    <span class="food-text">أوراق الهندباء البرية</span>
+                                </div>
+                                <div class="food-item">
+                                    <span class="food-emoji">🌿</span>
+                                    <span class="food-text">أعشاب البرسيم</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🍎</span>
+                                    <span class="food-text">تفاح أخضر مقطع</span>
+                                </div>
+                                <div class="food-item">
+                                    <span class="food-emoji">🍊</span>
+                                    <span class="food-text">برتقال حامض</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🥚</span>
+                                    <span class="food-text">بيض مسلوق للتكاثر</span>
+                                </div>
+                                <div class="food-item">
+                                    <span class="food-emoji">🍯</span>
+                                    <span class="food-text">عسل الأكاسيا</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="day-cell">الاثنين</td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🌾</span>
+                                    <span class="food-text">بذور الكتان البرية</span>
+                                </div>
+                                <div class="food-item">
+                                    <span class="food-emoji">🌿</span>
+                                    <span class="food-text">بذور البربرين</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🥬</span>
+                                    <span class="food-text">أوراق الجرجير</span>
+                                </div>
+                                <div class="food-item">
+                                    <span class="food-emoji">🌿</span>
+                                    <span class="food-text">نبات الحميض</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🍓</span>
+                                    <span class="food-text">توت بري طازج</span>
+                                </div>
+                                <div class="food-item">
+                                    <span class="food-emoji">🫐</span>
+                                    <span class="food-text">توت أزرق</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="food-item">
+                                    <span class="food-emoji">🌿</span>
+                                    <span class="food-text">أعشاب طبية مجففة</span>
+                                </div>
+                                <div class="food-item">
+                                    <span class="food-emoji">🥛</span>
+                                    <span class="food-text">مكملات فيتامين د</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="notes">
+            <h3>🔔 ملاحظات مهمة للتغذية السليمة</h3>
             <ul>
-                <li>🗺️ Vast Realm: 9.6 million square kilometers of untold stories</li>
-                <li>🏞️ Diverse Landscapes: From misty peaks to ancient plains</li>
-                <li>🌊 Legendary Rivers: Yangtze and Yellow - arteries of civilization</li>
+                <li>تأكد من توفر الماء النظيف والطازج يومياً</li>
+                <li>لا تقدم الأفوكادو أو الشوكولاتة - سامة للطيور</li>
+                <li>اغسل الخضار والفواكه جيداً قبل التقديم</li>
+                <li>قدم الطعام الطازج في الصباح وأزله في المساء</li>
+                <li>راقب وزن الطائر وحالته الصحية بانتظام</li>
+                <li>استشر الطبيب البيطري عند ملاحظة أي تغييرات</li>
             </ul>
         </div>
         
-        <div id="slide3" class="slide">
-            <div class="slide-sticker">🏺</div>
-            <img src="https://images.pexels.com/photos/33266/work-chinese-industrial-professional.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Chinese Historical Artifacts" class="slide-image">
-            <h2>Echoes of Dynasties</h2>
-            <p>A tapestry of empires, woven with threads of wisdom, conflict, and transformation</p>
-            <ul>
-                <li>👑 Imperial Legacies: From Xia to Qing, each dynasty a chapter of legend</li>
-                <li>💡 Revolutionary Innovations: Inventions that changed the world</li>
-                <li>🧘 Philosophical Depths: Harmony of thought through centuries</li>
-            </ul>
-        </div>
-        
-        <div id="slide4" class="slide">
-            <div class="slide-sticker">🚀</div>
-            <img src="https://images.pexels.com/photos/275289/pexels-photo-275289.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Modern Chinese City" class="slide-image">
-            <h2>Forge of the Future</h2>
-            <p>Where ancient wisdom ignites the flames of technological revolution</p>
-            <ul>
-                <li>💼 Economic Titan: Reshaping global economic landscapes</li>
-                <li>🤖 Technological Frontier: Pioneering the next era of innovation</li>
-                <li>🌐 Global Influence: Connecting worlds, bridging civilizations</li>
-            </ul>
-        </div>
-        
-        <div id="slide5" class="slide">
-            <div class="slide-sticker">🎨</div>
-            <img src="https://images.pexels.com/photos/2915957/pexels-photo-2915957.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Chinese Culture" class="slide-image">
-            <h2>Cultural Inferno</h2>
-            <p>A blazing mosaic of traditions, arts, and expressions that defy time and boundaries</p>
-            <ul>
-                <li>🏯 Iconic Monuments: Testaments to human creativity and resilience</li>
-                <li>✍️ Artistic Traditions: Brushstrokes of cultural immortality</li>
-                <li>🥢 Culinary Alchemy: Flavors that tell stories of generations</li>
-            </ul>
-        </div>
-        
-        <div class="navigation">
-            <button onclick="changeSlide(-1)">Previous</button>
-            <button onclick="changeSlide(1)">Next</button>
+        <div style="background: linear-gradient(135deg, #a8e6cf 0%, #88d8c0 100%); margin: 30px; padding: 20px; border-radius: 15px; text-align: center;">
+            <h3 style="color: #2d3436; margin-bottom: 15px; font-size: 1.3em;">🎯 الاحتياجات الخاصة لكل نوع</h3>
+            <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 15px;">
+                <div style="background: rgba(255,255,255,0.3); padding: 15px; border-radius: 10px; min-width: 180px;">
+                    <h4 style="color: #4facfe; margin-bottom: 10px;">🦜 البادجي</h4>
+                    <p style="font-size: 0.9em; color: #2d3436;">يحتاج لبذور صغيرة الحجم وخضار ناعمة</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.3); padding: 15px; border-radius: 10px; min-width: 180px;">
+                    <h4 style="color: #ffeaa7; margin-bottom: 10px;">🐤 الكناري</h4>
+                    <p style="font-size: 0.9em; color: #2d3436;">يفضل البذور الزيتية والفواكه الحمضية</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.3); padding: 15px; border-radius: 10px; min-width: 180px;">
+                    <h4 style="color: #fd79a8; margin-bottom: 10px;">🦜 الفيشر</h4>
+                    <p style="font-size: 0.9em; color: #2d3436;">يحتاج لبروتين أكثر وفواكه استوائية</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.3); padding: 15px; border-radius: 10px; min-width: 180px;">
+                    <h4 style="color: #00b894; margin-bottom: 10px;">🐦 الزيبرا</h4>
+                    <p style="font-size: 0.9em; color: #2d3436;">طائر صغير يحتاج بذور دقيقة وطعام مفروم</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.3); padding: 15px; border-radius: 10px; min-width: 180px;">
+                    <h4 style="color: #e84393; margin-bottom: 10px;">🦜 الكوكتايل</h4>
+                    <p style="font-size: 0.9em; color: #2d3436;">يحب الذرة والفواكه الحلوة والمكسرات</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.3); padding: 15px; border-radius: 10px; min-width: 180px;">
+                    <h4 style="color: #fdcb6e; margin-bottom: 10px;">🐤 الحسون</h4>
+                    <p style="font-size: 0.9em; color: #2d3436;">يفضل البذور البرية والأعشاب الطبيعية</p>
+                </div>
+            </div>
         </div>
     </div>
-
-    <script>
-        function toggleFullScreen() {
-            const container = document.getElementById('presentation-container');
-            const fullscreenIcon = document.querySelector('.fullscreen-toggle i');
-
-            if (!document.fullscreenElement) {
-                if (container.requestFullscreen) {
-                    container.requestFullscreen();
-                } else if (container.mozRequestFullScreen) {
-                    container.mozRequestFullScreen();
-                } else if (container.webkitRequestFullscreen) {
-                    container.webkitRequestFullscreen();
-                } else if (container.msRequestFullscreen) {
-                    container.msRequestFullscreen();
-                }
-                fullscreenIcon.classList.remove('fa-expand');
-                fullscreenIcon.classList.add('fa-compress');
-            } else {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                } else if (document.mozCancelFullScreen) {
-                    document.mozCancelFullScreen();
-                } else if (document.webkitExitFullscreen) {
-                    document.webkitExitFullscreen();
-                } else if (document.msExitFullscreen) {
-                    document.msExitFullscreen();
-                }
-                fullscreenIcon.classList.remove('fa-compress');
-                fullscreenIcon.classList.add('fa-expand');
-            }
-        }
-
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-
-        function changeSlide(direction) {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + direction + slides.length) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }
-    </script>
 </body>
 </html>
